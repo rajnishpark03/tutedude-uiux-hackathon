@@ -130,33 +130,34 @@ h1, h2, h3, p { margin: 0; }
 }
 .hero__inner {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr 1.05fr;
   align-items: center;
   gap: 48px;
 }
 .hero__title {
-  font-size: clamp(32px, 4.2vw, 46px);
+  font-size: clamp(36px, 4.9vw, 58px);
   font-weight: 700;
   line-height: 1.22;
   letter-spacing: -.01em;
   margin-bottom: 26px;
 }
 .hero__title .emoji { font-size: .9em; }
-.hero__sub { display: block; margin-top: 6px; font-size: .62em; font-weight: 600; color: var(--ink-soft); }
+.hero__sub { display: block; margin-top: 8px; font-size: .5em; white-space: nowrap; font-weight: 600; color: var(--ink-soft); }
 .hero__meta {
   display: grid;
-  gap: 12px;
-  margin-bottom: 32px;
-  font-size: 15px;
+  gap: 14px;
+  margin-bottom: 36px;
+  font-size: 17px;
   color: var(--ink-soft);
 }
 .hero__meta li { display: flex; align-items: center; gap: 12px; }
 .hero__meta strong { color: var(--ink); font-weight: 600; }
+.hero__content > .btn--primary { padding: 17px 34px; font-size: 17px; }
 .meta-icon {
   display: inline-grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
   background: var(--purple-tint);
   color: var(--purple);
@@ -167,7 +168,7 @@ h1, h2, h3, p { margin: 0; }
 .hero__card {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 600px;
   padding: 0 24px 0;
 }
 .hero__illustration {
@@ -179,8 +180,9 @@ h1, h2, h3, p { margin: 0; }
 .hero__ribbon {
   position: relative;
   z-index: 2;
-  margin: -34px -12px 0;
-  padding: 18px 32px 22px;
+  margin: -38px -12px 0;
+  padding: 20px 34px 24px;
+  font-size: 23px;
   box-shadow: 0 12px 26px rgba(139,30,139,.28);
   background: linear-gradient(90deg, var(--purple-dark), var(--purple) 55%, var(--purple-light));
   color: var(--white);
