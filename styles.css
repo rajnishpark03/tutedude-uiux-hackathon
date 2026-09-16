@@ -123,12 +123,16 @@ h1, h2, h3, p { margin: 0; }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 72px 0 84px;
+  min-height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  padding: 60px 0 72px;
   background:
     radial-gradient(600px 300px at 90% 0%, rgba(139, 30, 139, .06), transparent 70%),
     var(--white);
 }
 .hero__inner {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   align-items: center;
@@ -802,7 +806,7 @@ h1, h2, h3, p { margin: 0; }
   .about__inner,
   .process__inner,
   .cta__card { grid-template-columns: 1fr; }
-  .hero { padding: 48px 0 56px; }
+  .hero { min-height: 0; display: block; padding: 48px 0 56px; }
   .hero__inner { gap: 20px; }
   .hero__visual { order: 1; }
   .hero__meta { margin-bottom: 0; }
