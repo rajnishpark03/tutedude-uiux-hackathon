@@ -182,7 +182,7 @@ function closeRegistrations() {
   });
   if (cdEl) {
     cdEl.classList.add("is-live");
-    document.getElementById("countdownLabel").textContent = "The opening ceremony is live";
+    document.getElementById("countdownLabel").textContent = "Registrations are closed";
   }
 }
 

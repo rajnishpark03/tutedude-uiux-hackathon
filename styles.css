@@ -806,8 +806,8 @@ h1, h2, h3, p { margin: 0; }
 .countdown__cell span { font-size: 10.5px; color: var(--muted); }
 .countdown__when { display: none; }
 .countdown.is-live .countdown__grid { display: none; }
-.countdown.is-live .countdown__label { color: #1c7c43; }
-.countdown.is-live .countdown__label::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #25d366; margin-right: 8px; animation: pulse 1.4s ease-in-out infinite; }
+.countdown.is-live .countdown__label { color: #d23b3b; }
+.countdown.is-live .countdown__label::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #d23b3b; margin-right: 8px; animation: pulse 1.4s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 .btn.is-closed { background: #b9b2bd; color: #fff; box-shadow: none; cursor: not-allowed; }
 .btn.is-closed:hover { background: #b9b2bd; transform: none; }
