@@ -939,17 +939,6 @@ h1, h2, h3, p { margin: 0; }
     border-radius: 2px;
     background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.2));
   }
-  .timeline__day::before {
-    content: "";
-    position: absolute;
-    left: -19px;
-    top: -2px;
-    width: 16px;
-    height: 18px;
-    border-left: 2px solid rgba(255,255,255,.45);
-    border-bottom: 2px solid rgba(255,255,255,.45);
-    border-bottom-left-radius: 12px;
-  }
   .timeline__day::after {
     content: "";
     position: absolute;
@@ -961,7 +950,6 @@ h1, h2, h3, p { margin: 0; }
     background: var(--purple);
     box-shadow: 0 0 0 3px #3a0a3a, 0 0 0 5px rgba(255,255,255,.35);
   }
-  .timeline__day:first-child::before { display: none; }
   .memes__inner { grid-template-columns: 1fr; gap: 24px; }
   .memes__intro { position: static; }
   .memes__stack { --stack-top: 84px; --stack-gap: 12px; }
