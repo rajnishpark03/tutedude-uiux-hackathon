@@ -614,8 +614,8 @@ h1, h2, h3, p { margin: 0; }
 .timeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
 .timeline__line {
   position: absolute;
