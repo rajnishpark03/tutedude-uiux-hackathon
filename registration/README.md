@@ -36,11 +36,11 @@ vercel --prod
 
 ## 4. Admin dashboard
 
-Open `https://<your-domain>/admin` (no login).
+Open `https://<your-domain>/admin` and enter the `ADMIN_KEY`.
 You get live totals (total, today, last hour, solo vs team), daily sign-up chart,
 role and source breakdowns, a searchable table, and a CSV download.
 
-Raw API: `/api/stats`, `/api/registrations?q=…&limit=50&offset=0`, `/api/registrations?format=csv`.
+Raw API (same key): `/api/stats?key=…`, `/api/registrations?key=…&q=…`, `/api/registrations?key=…&format=csv`.
 
 ## Fields collected
 

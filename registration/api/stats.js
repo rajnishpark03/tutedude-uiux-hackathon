@@ -1,11 +1,15 @@
 import { db, json } from "./_db.js";
 
-// GET /api/stats
+// GET /api/stats?key=ADMIN_KEY
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return json(res, 405, { ok: false, error: "Method not allowed" });
   }
+
+  const url = new URL(req.url, "http://localhost");
+  const key = url.searchParams.get("key") || req.headers["x-admin-key"];
+  if (!process.env.ADMIN_KEY || key !== process.env.ADMIN_KEY) return json(res, 401, { ok: false, error: "Unauthorized" });
 
   try {
     const sql = db();

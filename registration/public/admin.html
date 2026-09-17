@@ -18,13 +18,24 @@
       <a href="/" class="logo" aria-label="Registration form"><img src="tutedude-logo.png" alt="TuteDude" width="468" height="135" /></a>
       <div class="navbar__right">
         <span class="admin__badge">Admin</span>
+        <button type="button" class="navlink" id="logoutBtn" hidden>Log out</button>
       </div>
     </div>
   </header>
 
   <main class="page">
     <div class="container">
-      <section id="dash">
+      <section class="login card" id="login" hidden>
+        <h1>Registrations dashboard</h1>
+        <p class="side__lead">Enter the admin key to view registrations.</p>
+        <form id="loginForm" class="login__form">
+          <input type="password" id="keyInput" placeholder="Admin key" autocomplete="current-password" required />
+          <button type="submit" class="btn">Open dashboard</button>
+        </form>
+        <p class="form__status" id="loginStatus"></p>
+      </section>
+
+      <section id="dash" hidden>
         <div class="dash__head">
           <div>
             <h1>Registrations</h1>

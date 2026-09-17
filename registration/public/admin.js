@@ -1,5 +1,6 @@
 const $ = (id) => document.getElementById(id);
 const PAGE = 50;
+let key = sessionStorage.getItem("adminKey") || "";
 let offset = 0;
 let query = "";
 let total = 0;
@@ -10,15 +11,25 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 async function api(path, params = {}) {
   const url = new URL(path, location.origin);
   Object.entries(params).forEach(([k, v]) => v !== undefined && v !== "" && url.searchParams.set(k, v));
-  const res = await fetch(url);
+  const res = await fetch(url, { headers: { "x-admin-key": key } });
   const body = await res.json().catch(() => ({}));
+  if (res.status === 401) throw new Error("unauthorized");
   if (!res.ok || !body.ok) throw new Error(body.error || "Request failed");
   return body;
 }
 
+function showLogin(message = "") {
+  $("login").hidden = false;
+  $("dash").hidden = true;
+  $("logoutBtn").hidden = true;
+  $("loginStatus").textContent = message;
+}
+
 function showDash() {
+  $("login").hidden = true;
   $("dash").hidden = false;
-  $("csvLink").href = "/api/registrations?format=csv";
+  $("logoutBtn").hidden = false;
+  $("csvLink").href = `/api/registrations?key=${encodeURIComponent(key)}&format=csv`;
 }
 
 function renderStats(s) {
@@ -73,15 +84,29 @@ async function loadAll() {
     renderRows(list.registrations);
     showDash();
   } catch (err) {
-    showDash();
-    $("dashStatus").textContent = err.message;
+    if (err.message === "unauthorized") {
+      sessionStorage.removeItem("adminKey");
+      key = "";
+      showLogin(key === "" && $("keyInput").value ? "Wrong admin key." : "");
+    } else {
+      showDash();
+      $("dashStatus").textContent = err.message;
+    }
   }
 }
 
+$("loginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  key = $("keyInput").value.trim();
+  if (!key) return;
+  sessionStorage.setItem("adminKey", key);
+  loadAll();
+});
+$("logoutBtn").addEventListener("click", () => { sessionStorage.removeItem("adminKey"); key = ""; $("keyInput").value = ""; showLogin(); });
 $("refreshBtn").addEventListener("click", loadAll);
 $("prevBtn").addEventListener("click", () => { offset = Math.max(0, offset - PAGE); loadAll(); });
 $("nextBtn").addEventListener("click", () => { offset += PAGE; loadAll(); });
 let t;
 $("search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { query = e.target.value.trim(); offset = 0; loadAll(); }, 300); });
 
-loadAll();
+if (key) loadAll(); else showLogin();

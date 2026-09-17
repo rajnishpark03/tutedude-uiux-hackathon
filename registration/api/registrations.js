@@ -2,14 +2,20 @@ import { db, json } from "./_db.js";
 
 const COLS = ["id", "full_name", "email", "phone", "college", "role", "participation", "teammate_name", "teammate_email", "heard_from", "created_at"];
 
-// GET /api/registrations?q=search&limit=50&offset=0
-// GET /api/registrations?format=csv   (full export)
+function authorized(req, url) {
+  const key = url.searchParams.get("key") || req.headers["x-admin-key"];
+  return Boolean(process.env.ADMIN_KEY) && key === process.env.ADMIN_KEY;
+}
+
+// GET /api/registrations?key=ADMIN_KEY&q=search&limit=50&offset=0
+// GET /api/registrations?key=ADMIN_KEY&format=csv   (full export)
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return json(res, 405, { ok: false, error: "Method not allowed" });
   }
   const url = new URL(req.url, "http://localhost");
+  if (!authorized(req, url)) return json(res, 401, { ok: false, error: "Unauthorized" });
 
   const q = (url.searchParams.get("q") || "").trim().slice(0, 100);
   const pattern = `%${q}%`;
