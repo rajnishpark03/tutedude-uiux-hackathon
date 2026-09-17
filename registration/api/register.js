@@ -40,7 +40,12 @@ export function validate(input) {
   return { data, errors };
 }
 
+export const CEREMONY_AT = Date.parse("2026-09-18T19:00:00+05:30");
+
 export default async function handler(req, res) {
+  if (Date.now() >= CEREMONY_AT) {
+    return json(res, 403, { ok: false, closed: true, error: "Registrations are closed. The opening ceremony has already started." });
+  }
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return json(res, 405, { ok: false, error: "Method not allowed" });

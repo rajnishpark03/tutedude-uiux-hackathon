@@ -60,6 +60,7 @@ form.addEventListener("submit", async (event) => {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
+    if (body.closed) { showClosed(); return; }
     if (body.errors) showErrors(body.errors);
     else status.textContent = body.error || "Something went wrong. Please try again.";
   } catch {
@@ -69,3 +70,34 @@ form.addEventListener("submit", async (event) => {
     submitBtn.textContent = "Register for Free";
   }
 });
+
+
+// ---------- Registration cutoff (opening ceremony) ----------
+const CEREMONY_AT = new Date("2026-09-18T19:00:00+05:30").getTime();
+const cdEl = document.getElementById("countdown");
+let closedShown = false;
+
+function showClosed() {
+  if (closedShown) return;
+  closedShown = true;
+  form.hidden = true;
+  document.getElementById("success").hidden = true;
+  document.getElementById("closed").hidden = false;
+  if (cdEl) {
+    cdEl.classList.add("is-live");
+    document.getElementById("countdownLabel").textContent = "Registrations are closed";
+  }
+}
+
+function tickCountdown() {
+  const diff = CEREMONY_AT - Date.now();
+  if (diff <= 0) { showClosed(); return; }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const set = (key, v) => { const el = cdEl && cdEl.querySelector(`[data-cd="${key}"]`); if (el) el.textContent = String(v).padStart(2, "0"); };
+  set("d", d); set("h", h); set("m", m); set("s", s);
+}
+tickCountdown();
+setInterval(tickCountdown, 1000);

@@ -146,3 +146,54 @@ if (stacks.length) {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
   relayout();
 }
+
+
+// ---------- Opening ceremony countdown + registration cutoff ----------
+const CEREMONY_AT = new Date("2026-09-18T19:00:00+05:30").getTime();
+const cdEl = document.getElementById("countdown");
+const registerCtas = Array.from(document.querySelectorAll(".js-register"));
+const closedModal = document.getElementById("closedModal");
+let registrationsClosed = false;
+
+function openClosedModal() {
+  if (!closedModal) return;
+  closedModal.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+function closeClosedModal() {
+  if (!closedModal) return;
+  closedModal.hidden = true;
+  document.body.style.overflow = "";
+}
+if (closedModal) {
+  closedModal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeClosedModal));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeClosedModal(); });
+}
+
+function closeRegistrations() {
+  if (registrationsClosed) return;
+  registrationsClosed = true;
+  registerCtas.forEach((a) => {
+    a.textContent = "Registrations Closed";
+    a.classList.add("is-closed");
+    a.setAttribute("href", "#");
+    a.setAttribute("aria-disabled", "true");
+    a.addEventListener("click", (e) => { e.preventDefault(); openClosedModal(); });
+  });
+  if (cdEl) {
+    cdEl.classList.add("is-live");
+    document.getElementById("countdownLabel").textContent = "The opening ceremony is live";
+  }
+}
+
+function tickCountdown() {
+  const diff = CEREMONY_AT - Date.now();
+  if (diff <= 0) { closeRegistrations(); return; }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const set = (k, v) => { const el = cdEl && cdEl.querySelector(`[data-cd="${k}"]`); if (el) el.textContent = String(v).padStart(2, "0"); };
+  set("d", d); set("h", h); set("m", m); set("s", s);
+}
+if (cdEl) { tickCountdown(); setInterval(tickCountdown, 1000); }

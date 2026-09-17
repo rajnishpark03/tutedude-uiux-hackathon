@@ -27,6 +27,16 @@
         <span class="eyebrow">UI/UX Hackathon</span>
         <h1>Register for the hackathon</h1>
         <p class="side__lead">Free entry. Takes about a minute. The WhatsApp group link is on the next screen.</p>
+        <div class="countdown" id="countdown" aria-live="polite">
+          <span class="countdown__label" id="countdownLabel">Registrations close in</span>
+          <div class="countdown__grid">
+            <div class="countdown__cell"><strong data-cd="d">00</strong><span>days</span></div>
+            <div class="countdown__cell"><strong data-cd="h">00</strong><span>hours</span></div>
+            <div class="countdown__cell"><strong data-cd="m">00</strong><span>mins</span></div>
+            <div class="countdown__cell"><strong data-cd="s">00</strong><span>secs</span></div>
+          </div>
+          <span class="countdown__when">Opening ceremony · 18 September, 7:00 PM IST</span>
+        </div>
         <ul class="facts">
           <li><span class="facts__icon" aria-hidden="true">📅</span><span>18 to 21 September</span></li>
           <li><span class="facts__icon" aria-hidden="true">💻</span><span>100% online</span></li>
@@ -118,6 +128,14 @@
           <p class="form__status" id="formStatus" role="alert"></p>
           <button type="submit" class="btn" id="submitBtn">Register for Free</button>
         </form>
+
+        <div class="closed" id="closed" hidden>
+          <div class="success__icon" aria-hidden="true">🚪</div>
+          <h2>Oops, you just missed it</h2>
+          <p>The opening ceremony has kicked off and registrations are now closed. We would have loved to have you on board.</p>
+          <p class="success__note">Keep an eye on Tutedude, the next hackathon will be bigger, and you will be the first to know.</p>
+          <a class="btn" href="https://tutedude.com/" target="_blank" rel="noopener">Explore Tutedude</a>
+        </div>
 
         <div class="success" id="success" hidden>
           <div class="success__icon" aria-hidden="true">🎉</div>

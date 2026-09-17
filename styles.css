@@ -24,6 +24,7 @@
 *,
 *::before,
 *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 html { scroll-behavior: smooth; overflow-x: clip; }
 
@@ -786,6 +787,44 @@ h1, h2, h3, p { margin: 0; }
   flex-wrap: wrap;
 }
 
+/* ---------- Countdown ---------- */
+.countdown {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: -6px 0 30px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+}
+.countdown__label { font-size: 12.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--purple); }
+.countdown__grid { display: flex; gap: 8px; }
+.countdown__cell { display: grid; justify-items: center; min-width: 58px; padding: 8px 6px; border-radius: 10px; background: var(--purple-tint); }
+.countdown__cell strong { font-size: 24px; font-weight: 700; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.countdown__cell span { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.countdown__when { font-size: 12.5px; color: var(--muted); }
+.countdown.is-live .countdown__grid { display: none; }
+.countdown.is-live .countdown__label { color: #1c7c43; }
+.countdown.is-live .countdown__label::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #25d366; margin-right: 8px; animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.btn.is-closed { background: #b9b2bd; color: #fff; box-shadow: none; cursor: not-allowed; }
+.btn.is-closed:hover { background: #b9b2bd; transform: none; }
+.btn--ghost { background: var(--white); color: var(--purple); border: 1px solid var(--line); box-shadow: none; }
+.btn--ghost:hover { background: var(--purple-tint); }
+
+/* ---------- Closed modal ---------- */
+.modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; }
+.modal__backdrop { position: absolute; inset: 0; background: rgba(26,18,32,.55); backdrop-filter: blur(3px); }
+.modal__card { position: relative; width: min(100%, 460px); background: var(--white); border-radius: 20px; padding: 36px 32px 30px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.35); animation: modal-in .25s ease; }
+@keyframes modal-in { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+.modal__x { position: absolute; top: 12px; right: 14px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: var(--purple-tint); color: var(--purple); font-size: 22px; line-height: 1; cursor: pointer; }
+.modal__emoji { font-size: 44px; margin-bottom: 8px; }
+.modal__card h2 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+.modal__card p { font-size: 15px; color: var(--ink-soft); }
+.modal__sub { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.modal__actions { display: flex; gap: 10px; justify-content: center; margin-top: 22px; flex-wrap: wrap; }
+
 /* ---------- Help button ---------- */
 .help-fab {
   position: fixed;
@@ -842,6 +881,8 @@ h1, h2, h3, p { margin: 0; }
   .hero__visual { order: 1; }
   .hero__meta { margin-bottom: 0; }
   .hero__content .btn { display: none; }
+  .countdown { margin: 4px 0 8px; width: 100%; }
+  .countdown__cell { min-width: 0; flex: 1; }
   .navbar .btn--sm { padding: 10px 16px; font-size: 13px; }
   .process__intro { position: static; margin-bottom: 8px; }
   .progress, .process__cta { display: none; }
