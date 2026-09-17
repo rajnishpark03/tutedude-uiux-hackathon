@@ -928,7 +928,40 @@ h1, h2, h3, p { margin: 0; }
   .step h3 { font-size: 18px; }
   .cta__card { padding: 56px 32px; text-align: center; }
   .cta__right p { margin-left: auto; margin-right: auto; }
-  .timeline { grid-template-columns: 1fr; gap: 40px; }
+  .timeline { grid-template-columns: 1fr; gap: 34px; position: relative; padding-left: 26px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 14px;
+    bottom: 18px;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.2));
+  }
+  .timeline__day::before {
+    content: "";
+    position: absolute;
+    left: -19px;
+    top: -2px;
+    width: 16px;
+    height: 18px;
+    border-left: 2px solid rgba(255,255,255,.45);
+    border-bottom: 2px solid rgba(255,255,255,.45);
+    border-bottom-left-radius: 12px;
+  }
+  .timeline__day::after {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--purple);
+    box-shadow: 0 0 0 3px #3a0a3a, 0 0 0 5px rgba(255,255,255,.35);
+  }
+  .timeline__day:first-child::before { display: none; }
   .memes__inner { grid-template-columns: 1fr; gap: 24px; }
   .memes__intro { position: static; }
   .memes__stack { --stack-top: 84px; --stack-gap: 12px; }
