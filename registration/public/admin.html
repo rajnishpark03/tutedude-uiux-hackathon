@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin · Hackathon Registrations</title>
+  <link rel="icon" type="image/png" href="fav.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin">
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="/" class="logo" aria-label="Registration form"><img src="tutedude-logo.png" alt="TuteDude" width="468" height="135" /></a>
+      <div class="navbar__right">
+        <span class="admin__badge">Admin</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section id="dash">
+        <div class="dash__head">
+          <div>
+            <h1>Registrations</h1>
+            <p class="side__lead" id="updatedAt">Loading…</p>
+          </div>
+          <div class="dash__actions">
+            <button type="button" class="btn btn--ghost" id="refreshBtn">Refresh</button>
+            <a class="btn" id="csvLink" href="#" download>Download CSV</a>
+          </div>
+        </div>
+
+        <div class="stats" id="stats">
+          <div class="stat"><span class="stat__label">Total</span><strong class="stat__value" data-stat="total">–</strong></div>
+          <div class="stat"><span class="stat__label">Today</span><strong class="stat__value" data-stat="today">–</strong></div>
+          <div class="stat"><span class="stat__label">Last hour</span><strong class="stat__value" data-stat="last_hour">–</strong></div>
+          <div class="stat"><span class="stat__label">Solo</span><strong class="stat__value" data-stat="solo">–</strong></div>
+          <div class="stat"><span class="stat__label">Teams of 2</span><strong class="stat__value" data-stat="team">–</strong></div>
+        </div>
+
+        <div class="panels">
+          <div class="panel"><h3>Daily sign-ups (last 14 days)</h3><div class="bars" id="daily"></div></div>
+          <div class="panel"><h3>Who is registering</h3><ul class="breakdown" id="roles"></ul></div>
+          <div class="panel"><h3>Where they heard about it</h3><ul class="breakdown" id="sources"></ul></div>
+        </div>
+
+        <div class="tablebar">
+          <input type="search" id="search" placeholder="Search name, email, phone or college" />
+          <span class="tablebar__count" id="count"></span>
+        </div>
+        <div class="tablewrap">
+          <table class="table">
+            <thead>
+              <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>College / company</th><th>Role</th><th>Type</th><th>Teammate</th><th>Source</th><th>Registered</th></tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <button type="button" class="btn btn--ghost" id="prevBtn">Previous</button>
+          <span id="pageInfo"></span>
+          <button type="button" class="btn btn--ghost" id="nextBtn">Next</button>
+        </div>
+        <p class="form__status" id="dashStatus"></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "uiux-hackathon-registration",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Registration form for Tutedude UI/UX Hackathon, backed by Neon Postgres",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "db:setup": "node scripts/setup-db.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

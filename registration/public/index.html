@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register · Tutedude UI/UX Hackathon</title>
+  <meta name="description" content="Register for Tutedude's UI/UX Hackathon, 18 to 20 September. Free entry, solo or team of 2, ₹20,000 prize." />
+  <link rel="icon" type="image/png" href="fav.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="https://tutedude-uiux-hackathon.vercel.app/" class="logo" aria-label="Tutedude home">
+        <img src="tutedude-logo.png" alt="TuteDude" width="468" height="135" />
+      </a>
+      <a href="https://tutedude-uiux-hackathon.vercel.app/" class="navlink">Back to event page</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container page__inner">
+      <aside class="side">
+        <span class="eyebrow">UI/UX Hackathon</span>
+        <h1>Register for the hackathon</h1>
+        <p class="side__lead">Free entry. Takes about a minute. The WhatsApp group link is on the next screen.</p>
+        <ul class="facts">
+          <li><span class="facts__icon" aria-hidden="true">📅</span><span>18 to 20 September</span></li>
+          <li><span class="facts__icon" aria-hidden="true">💻</span><span>100% online</span></li>
+          <li><span class="facts__icon" aria-hidden="true">👥</span><span>Solo or a team of 2</span></li>
+          <li><span class="facts__icon" aria-hidden="true">🏆</span><span>₹20,000 grand prize</span></li>
+        </ul>
+      </aside>
+
+      <section class="card" aria-live="polite">
+        <form id="regForm" class="form" novalidate>
+          <div class="field">
+            <label for="full_name">Full name</label>
+            <input id="full_name" name="full_name" type="text" autocomplete="name" placeholder="Priya Sharma" required />
+            <small class="error" data-for="full_name"></small>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              <small class="error" data-for="email"></small>
+            </div>
+            <div class="field">
+              <label for="phone">WhatsApp number</label>
+              <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="98765 43210" required />
+              <small class="error" data-for="phone"></small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="college">College or company</label>
+              <input id="college" name="college" type="text" autocomplete="organization" placeholder="IIT Delhi" required />
+              <small class="error" data-for="college"></small>
+            </div>
+            <div class="field">
+              <label for="role">You are a</label>
+              <select id="role" name="role" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="student">Student</option>
+                <option value="professional">Working professional</option>
+                <option value="other">Other</option>
+              </select>
+              <small class="error" data-for="role"></small>
+            </div>
+          </div>
+
+          <fieldset class="field">
+            <legend>Participating as</legend>
+            <div class="choice">
+              <label class="choice__opt"><input type="radio" name="participation" value="solo" checked /><span>Solo</span></label>
+              <label class="choice__opt"><input type="radio" name="participation" value="team" /><span>Team of 2</span></label>
+            </div>
+            <small class="error" data-for="participation"></small>
+          </fieldset>
+
+          <div class="row team-fields" id="teamFields" hidden>
+            <div class="field">
+              <label for="teammate_name">Teammate's name</label>
+              <input id="teammate_name" name="teammate_name" type="text" placeholder="Rahul Verma" />
+              <small class="error" data-for="teammate_name"></small>
+            </div>
+            <div class="field">
+              <label for="teammate_email">Teammate's email</label>
+              <input id="teammate_email" name="teammate_email" type="email" placeholder="teammate@example.com" />
+              <small class="error" data-for="teammate_email"></small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="heard_from">How did you hear about us? <span class="opt">(optional)</span></label>
+            <select id="heard_from" name="heard_from">
+              <option value="">Select one</option>
+              <option>Instagram</option>
+              <option>LinkedIn</option>
+              <option>WhatsApp</option>
+              <option>Friend</option>
+              <option>Tutedude course</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="consent" id="consent" />
+            <span>I agree to receive hackathon updates on WhatsApp and email.</span>
+          </label>
+          <small class="error" data-for="consent"></small>
+
+          <p class="form__status" id="formStatus" role="alert"></p>
+          <button type="submit" class="btn" id="submitBtn">Register for Free</button>
+        </form>
+
+        <div class="success" id="success" hidden>
+          <div class="success__icon" aria-hidden="true">🎉</div>
+          <h2>You're in!</h2>
+          <p>Registration done. Now join the WhatsApp group, that's where the challenge, updates and submission link will be shared.</p>
+          <a class="btn btn--wa" href="https://chat.whatsapp.com/Le1BfPRIeWe07nsqs0iCWm?mode=gi_t" target="_blank" rel="noopener">Join the WhatsApp Group</a>
+          <p class="success__note">Registered as <strong id="successEmail"></strong>. Questions? WhatsApp us at <a href="https://wa.me/916201647960" target="_blank" rel="noopener">+91 62016 47960</a>.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Tutedude. All rights reserved.</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
